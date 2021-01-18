@@ -1,0 +1,13 @@
+.profile__description{
+  margin: 14px 0 0;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 16.94px;
+}
+@media screen and (min-width: 1024px){
+  .profile__description{
+    font-size: 18px;
+    line-height: 21.78px;
+  }
+}

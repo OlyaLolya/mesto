@@ -1,0 +1,11 @@
+.profile__photo{
+  max-width: 168px;
+  border-radius: 150px;
+  width: 100%;
+  justify-self: center;
+}
+@media screen and (min-width: 1024px){
+  .profile__photo{
+
+  }
+}

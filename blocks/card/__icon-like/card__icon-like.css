@@ -1,0 +1,7 @@
+.card__icon-like{
+  width: 32px;
+  height: 19px;
+}
+.card__icon-like:hover{
+  opacity: .5;
+}

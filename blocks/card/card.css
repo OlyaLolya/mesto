@@ -1,0 +1,19 @@
+.card{
+  margin: 0;
+  display: grid;
+  /*grid-template-rows: 4fr 1fr;*/
+  gap: 0;
+}
+.card:not(:first-child){
+  margin: 20px 0 0;
+}
+
+@media screen and (min-width: 1024px){
+  .card{
+
+  }
+  .card:not(:first-child){
+    margin: 0;
+  }
+}
+
