@@ -2,7 +2,7 @@ function toLike(icon){
     icon.classList.toggle('card__icon-like_disabled');
     icon.classList.toggle('card__icon-like_active');
 }
-function formOpen(){
+function formOpener(){
   let profileName = document.querySelector('.profile__name');
   let profileDescription = document.querySelector('.profile__description')
   let formHeading = document.querySelector('.form__input_heading');
@@ -36,11 +36,9 @@ let editIcon = document.querySelector('.profile__edit-button');
 let likeIcon = document.querySelectorAll('.card__icon-like');
 
 closeIcon.addEventListener('click', () => {popUp.classList.remove('popup__opened')});
-editIcon.addEventListener('click', () => {formOpen()});
+editIcon.addEventListener('click', formOpener);
 
-
-
-for (let i=0; i < likeIcon.length; i++){
+for (let i = 0; i < likeIcon.length; i++){
   likeIcon[i].addEventListener('click', () => {toLike(likeIcon[i])});
 }
 
