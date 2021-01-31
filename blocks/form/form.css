@@ -1,3 +1,18 @@
 .form{
+  background-color: #ffffff;
+  /*width: 100%;*/
+  max-width: 288px;
+  padding: 25px 0;
+  text-align: center;
+  border-radius: 10px;
+  /*height: 322px;*/
+}
 
+@media screen and (min-width: 1024px){
+  .form{
+    max-width: 358px;
+    text-align: start;
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 }

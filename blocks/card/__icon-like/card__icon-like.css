@@ -3,6 +3,7 @@
   height: 19px;
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 .card__icon-like:hover{
   opacity: .5;

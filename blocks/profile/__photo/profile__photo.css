@@ -6,6 +6,7 @@
 }
 @media screen and (min-width: 1024px){
   .profile__photo{
-
+    width: 130px;
+    height: 130px;
   }
 }

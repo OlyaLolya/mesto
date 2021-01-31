@@ -2,9 +2,8 @@
   margin: 0 auto;
   max-width: 300px;
   padding-top: 28px;
+  padding-bottom: 32px;
   min-width: 300px;
-  /*max-width: 880px;*/
-  min-height: 56px;
   border-bottom: 1px solid rgba(84,84,84,0.7);
 }
 
@@ -12,6 +11,6 @@
   .header{
     max-width: 880px;
     padding-top: 45px;
-    min-height: 74px;
+    padding-bottom: 40px;
   }
 }
