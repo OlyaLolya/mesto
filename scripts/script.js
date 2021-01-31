@@ -1,5 +1,5 @@
-let nameInput = document.querySelector('.form__input_heading');
-let jobInput = document.querySelector('.form__input_description');
+let nameInput = document.querySelector('.form__input_data_heading');
+let jobInput = document.querySelector('.form__input_data_description');
 
 let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
