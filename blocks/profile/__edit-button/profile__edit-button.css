@@ -2,6 +2,7 @@
   width: 18px;
   height: 18px;
   border: 1px solid #ffffff;
+  background-color: transparent;
   background-image: url('../../../images/icon-edit.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -10,6 +11,9 @@
 }
 .profile__edit-button:hover{
   opacity: .6;
+}
+.profile__edit-button:focus{
+  outline: none;
 }
 @media screen and (min-width: 1024px){
   .profile__edit-button{
