@@ -36,9 +36,9 @@
 
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__header/form__header.css);
-@import url(../blocks/form/__info/form__info.css);
-@import url(../blocks/form/__info/_input/form__info_input.css);
-@import url(../blocks/form/__info/_input/_description/form__info_input_description.css);
-@import url(../blocks/form/__info/_input/_heading/form__info_input_heading.css);
+@import url(../blocks/form/__info/form__profile-info.css);
+@import url(../blocks/form/_input/form__input.css);
+@import url(../blocks/form/_input/_description/form__input_description.css);
+@import url(../blocks/form/_input/_heading/form__input_heading.css);
 @import url(../blocks/form/__button/form__button.css);
 
