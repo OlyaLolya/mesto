@@ -34,10 +34,11 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__icon-close/popup__icon-close.css);
 
+@import url(../blocks/form/form.css);
 @import url(../blocks/form/__header/form__header.css);
 @import url(../blocks/form/__profile-info/form__profile-info.css);
-@import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__input/_description/form__input_description.css);
-@import url(../blocks/form/__input/_heading/form__input_heading.css);
+@import url(../blocks/form/__profile-info/_input/form__input.css);
+@import url(../blocks/form/__profile-info/_input/_description/form__profile-info_input_description.css);
+@import url(../blocks/form/__profile-info/_input/_heading/form__profile-info_input_heading.css);
 @import url(../blocks/form/__button/form__button.css);
-@import url(../blocks/form/form.css);
+
