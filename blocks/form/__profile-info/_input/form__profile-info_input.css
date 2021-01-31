@@ -1,4 +1,4 @@
-.form__input{
+.form__profile-info_input{
   margin: 0 0 30px;
   padding: 0;
   width: 238px;
@@ -12,7 +12,7 @@
   line-height: 17px;
 }
 @media screen and (min-width: 1024px){
-  .form__input{
+  .form__profile-info_input{
     width: 100%;
   }
 }
