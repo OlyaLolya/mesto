@@ -1,8 +1,9 @@
 .profile__photo{
   max-width: 168px;
-  border-radius: 150px;
-  width: 100%;
+  border-radius: 50%;
   justify-self: center;
+  width: 127px;
+  height: 127px;
 }
 @media screen and (min-width: 1024px){
   .profile__photo{

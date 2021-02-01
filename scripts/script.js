@@ -28,7 +28,7 @@ function formSubmitHandler (evt) {
   closePopup();
 }
 
-closeIcon.addEventListener('click', () => {closePopup()});
+closeIcon.addEventListener('click', closePopup);
 editIcon.addEventListener('click', formOpener);
 
 formElement.addEventListener('submit', formSubmitHandler);

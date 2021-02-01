@@ -1,6 +1,7 @@
 .popup__icon-close{
-  width: 30px;
-  height: 30px;
+  padding: 0;
+  width: 26px;
+  height: 26px;
   background-color: transparent;
   border: none;
   background-image: url("../../../images/icon-close.svg");
@@ -11,7 +12,15 @@
 }
 .popup__icon-close:hover{
   opacity: .6;
+  cursor: pointer;
 }
 .popup__icon-close:focus{
   outline: none;
+}
+
+@media screen and (min-width: 1024px){
+  .popup__icon-close{
+    width: 40px;
+    height: 40px;
+  }
 }
