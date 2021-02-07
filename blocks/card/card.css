@@ -3,6 +3,8 @@
   display: grid;
   /*grid-template-rows: 4fr 1fr;*/
   gap: 0;
+
+  position: relative;
 }
 .card:not(:first-child){
   margin: 20px 0 0;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Проектная работа №4 на Яндекс.Практикуме">
+  <meta name="description" content="Проектная работа №5 на Яндекс.Практикуме">
   <meta name="author" content="OlyaLolya">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
@@ -28,74 +28,64 @@
     </section>
 
     <section class="cards">
-      <div class="card">
-        <img class="card__image" alt="Карачаевск" src="images/cards-karachaevsk.png">
-        <div class="card__description">
-          <h2 class="card__title">Карачаево-Черкесск</h2>
-          <button type="button" class="card__icon-like card__icon-like_disabled"></button>
-        </div>
-      </div>
 
-      <div class="card">
-        <img class="card__image" alt="Эльбрус" src="images/cards-elbrus.png">
-        <div class="card__description">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <button type="button" class="card__icon-like card__icon-like_disabled"></button>
-        </div>
-      </div>
-
-      <div class="card">
-        <img class="card__image" alt="Домбай" src="images/cards-dombay.png">
-        <div class="card__description">
-          <h2 class="card__title">Домбай</h2>
-          <button type="button" class="card__icon-like card__icon-like_disabled"></button>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card__image" alt="Карачаевск" src="images/cards-karachaevsk.png">
-        <div class="card__description">
-          <h2 class="card__title">Карачаевск</h2>
-          <button type="button" class="card__icon-like card__icon-like_disabled"></button>
-        </div>
-      </div>
-
-      <div class="card">
-        <img class="card__image" alt="Эльбрус" src="images/cards-elbrus.png">
-        <div class="card__description">
-          <h2 class="card__title">Гора Эльбрус</h2>
-          <button type="button" class="card__icon-like card__icon-like_disabled"></button>
-        </div>
-      </div>
-
-      <div class="card">
-        <img class="card__image" alt="Домбай" src="images/cards-dombay.png">
-        <div class="card__description">
-          <h2 class="card__title">Домбай</h2>
-          <button type="button" class="card__icon-like card__icon-like_disabled"></button>
-        </div>
-      </div>
     </section>
+
   </main>
   <footer class="footer">
     <p class="footer__text">© 2020 Mesto Russia</p>
   </footer>
 
-  <section class="popup">
+  <section class="popup popup__profile-edit">
     <div class="popup__container">
-      <button type="button" class="popup__icon-close"></button>
-
-      <form class="form" name="profile-edit-form">
+      <button type="button" class="popup__icon-close popup__icon-close-edit-form"></button>
+      <form class="form edit-form" name="profile-edit-form">
         <h2 class="form__header">Редактировать профиль</h2>
         <fieldset class="form__profile-info">
-          <input class="form__input form__input_data_heading" type="text" placeholder="Имя" name="profile-name">
-          <input class="form__input form__input_data_description" type="text" placeholder="О себе" name="profile-description">
+          <input class="form__input edit-form__input_data_heading" type="text" placeholder="Имя" name="profile-name">
+          <input class="form__input edit-form__input_data_description" type="text" placeholder="О себе"
+                 name="profile-description">
         </fieldset>
-        <input type="submit" class="form__button" value="Сохранить">
+        <input type="submit" class="form__button edit-form__submit-button" value="Сохранить">
       </form>
     </div>
   </section>
 
+  <section class="popup popup__add-card ">
+    <div class="popup__container">
+      <button type="button" class="popup__icon-close popup__icon-close-add-form"></button>
+      <form class="form add-form" name="add-card-form">
+        <h2 class="form__header">Новое место</h2>
+        <fieldset class="form__profile-info">
+          <input class="form__input add-form__input_card_heading" type="text" placeholder="Название" name="card-name">
+          <input class="form__input add-form__input_card_link" type="text" placeholder="Ссылка на картинку"
+                 name="card-link">
+        </fieldset>
+        <input type="submit" class="form__button add-form__submit-button" value="Создать">
+      </form>
+    </div>
+  </section>
+
+  <section class="popup popup__photo ">
+    <div class="popup__container">
+      <button type="button" class="popup__icon-close popup__icon-close-photo"></button>
+      <img class="photo" alt="" src="">
+      <p class="photo__description"></p>
+    </div>
+  </section>
 </div>
+<template id="card-template">
+  <div class="card">
+    <button type="button" class="card__icon-delete"></button>
+    <img class="card__image" alt="" src="">
+    <div class="card__description">
+      <h2 class="card__title"></h2>
+      <button type="button" class="card__icon-like card__icon-like_disabled"></button>
+    </div>
+  </div>
+</template>
+
+<script src="./scripts/cards.js"></script>
 <script src="./scripts/script.js"></script>
 </body>
 </html>
