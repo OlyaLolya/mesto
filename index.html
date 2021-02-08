@@ -36,14 +36,14 @@
     <p class="footer__text">© 2020 Mesto Russia</p>
   </footer>
 
-  <section class="popup popup__profile-edit">
+  <section class="popup popup__edit">
     <div class="popup__container">
       <button type="button" class="popup__icon-close popup__icon-close-edit-form"></button>
       <form class="form edit-form" name="profile-edit-form">
         <h2 class="form__header">Редактировать профиль</h2>
         <fieldset class="form__profile-info">
-          <input class="form__input edit-form__input_data_heading" type="text" placeholder="Имя" name="profile-name">
-          <input class="form__input edit-form__input_data_description" type="text" placeholder="О себе"
+          <input class="form__input form__input_data_heading" type="text" placeholder="Имя" name="profile-name">
+          <input class="form__input form__input_data_description" type="text" placeholder="О себе"
                  name="profile-description">
         </fieldset>
         <input type="submit" class="form__button edit-form__submit-button" value="Сохранить">
@@ -51,14 +51,14 @@
     </div>
   </section>
 
-  <section class="popup popup__add-card ">
+  <section class="popup popup__add">
     <div class="popup__container">
       <button type="button" class="popup__icon-close popup__icon-close-add-form"></button>
       <form class="form add-form" name="add-card-form">
         <h2 class="form__header">Новое место</h2>
         <fieldset class="form__profile-info">
-          <input class="form__input add-form__input_card_heading" type="text" placeholder="Название" name="card-name">
-          <input class="form__input add-form__input_card_link" type="text" placeholder="Ссылка на картинку"
+          <input class="form__input form__input_card_heading" type="text" placeholder="Название" name="card-name">
+          <input class="form__input form__input_card_link" type="text" placeholder="Ссылка на картинку"
                  name="card-link">
         </fieldset>
         <input type="submit" class="form__button add-form__submit-button" value="Создать">
@@ -66,10 +66,10 @@
     </div>
   </section>
 
-  <section class="popup popup__photo ">
+  <section class="popup popup__photo">
     <div class="popup__container">
       <button type="button" class="popup__icon-close popup__icon-close-photo"></button>
-      <img class="photo" alt="">
+      <img class="photo">
       <p class="photo__description"></p>
     </div>
   </section>
@@ -77,7 +77,7 @@
 <template id="card-template">
   <div class="card">
     <button type="button" class="card__icon-delete"></button>
-    <img class="card__image" alt="">
+    <img class="card__image">
     <div class="card__description">
       <h2 class="card__title"></h2>
       <button type="button" class="card__icon-like card__icon-like_disabled"></button>

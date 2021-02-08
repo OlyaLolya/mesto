@@ -1,9 +1,9 @@
 //имя и описание для профиля из формы
-let nameInput = document.querySelector('.edit-form__input_data_heading');
-let jobInput = document.querySelector('.edit-form__input_data_description');
+let nameInput = document.querySelector('.form__input_data_heading');
+let jobInput = document.querySelector('.form__input_data_description');
 //имя и ссылка для карточки из формы
-let newCardName = document.querySelector('.add-form__input_card_heading');
-let newCardLink = document.querySelector('.add-form__input_card_link');
+let newCardName = document.querySelector('.form__input_card_heading');
+let newCardLink = document.querySelector('.form__input_card_link');
 //элементы фото и описание к фото
 let photo = document.querySelector('.photo')
 let photoDescription = document.querySelector('.photo__description')
@@ -18,8 +18,8 @@ let closeEditFormIcon = document.querySelector('.popup__icon-close-edit-form');
 let closeAddFormIcon = document.querySelector('.popup__icon-close-add-form');
 let closePhotoIcon = document.querySelector('.popup__icon-close-photo');
 //попапы
-let popupProfileEdit = document.querySelector('.popup__profile-edit');
-let popupAddCard = document.querySelector('.popup__add-card');
+let popupProfileEdit = document.querySelector('.popup__edit');
+let popupAddCard = document.querySelector('.popup__add');
 let popupPhoto = document.querySelector('.popup__photo');
 //кнопки на странице
 let editIcon = document.querySelector('.profile__edit-button');
