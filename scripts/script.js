@@ -5,8 +5,8 @@ let jobInput = document.querySelector('.form__input_data_description');
 let newCardName = document.querySelector('.form__input_card_heading');
 let newCardLink = document.querySelector('.form__input_card_link');
 //элементы фото и описание к фото
-let photo = document.querySelector('.photo')
-let photoDescription = document.querySelector('.photo__description')
+let photo = document.querySelector('.popup__photo')
+let photoDescription = document.querySelector('.popup__description')
 //инфа в профиле
 let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
