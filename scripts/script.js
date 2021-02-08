@@ -18,9 +18,9 @@ let closeEditFormIcon = document.querySelector('.popup__icon-close-edit-form');
 let closeAddFormIcon = document.querySelector('.popup__icon-close-add-form');
 let closePhotoIcon = document.querySelector('.popup__icon-close-photo');
 //попапы
-let popupProfileEdit = document.querySelector('.popup__edit');
-let popupAddCard = document.querySelector('.popup__add');
-let popupPhoto = document.querySelector('.popup__photo');
+let popupProfileEdit = document.querySelector('#popup__edit');
+let popupAddCard = document.querySelector('#popup__add');
+let popupPhoto = document.querySelector('#popup__photo');
 //кнопки на странице
 let editIcon = document.querySelector('.profile__edit-button');
 let addIcon = document.querySelector('.profile__add-button');
