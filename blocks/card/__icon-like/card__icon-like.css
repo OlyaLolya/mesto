@@ -4,6 +4,10 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  background-image: url('../../../images/icon-like_disabled.svg');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .card__icon-like:hover{
   opacity: .5;

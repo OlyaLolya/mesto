@@ -1,83 +1,99 @@
 //имя и описание для профиля из формы
-let nameInput = document.querySelector('.form__input_data_heading');
-let jobInput = document.querySelector('.form__input_data_description');
+const nameInput = document.querySelector('.form__input_data_heading');
+const jobInput = document.querySelector('.form__input_data_description');
 //имя и ссылка для карточки из формы
-let newCardName = document.querySelector('.form__input_card_heading');
-let newCardLink = document.querySelector('.form__input_card_link');
+const newCardName = document.querySelector('.form__input_card_heading');
+const newCardLink = document.querySelector('.form__input_card_link');
 //элементы фото и описание к фото
-let photo = document.querySelector('.popup__photo')
-let photoDescription = document.querySelector('.popup__description')
+const photo = document.querySelector('.popup__photo')
+const photoDescription = document.querySelector('.popup__description')
 //инфа в профиле
-let profileName = document.querySelector('.profile__name');
-let profileDescription = document.querySelector('.profile__description');
+const profileName = document.querySelector('.profile__name');
+const profileDescription = document.querySelector('.profile__description');
 //элементы
-let editFormElement = document.querySelector('.edit-form');
-let addFormElement = document.querySelector('.add-form');
+const editFormElement = document.querySelector('.edit-form');
+const addFormElement = document.querySelector('.add-form');
 //иконки закрытия
-let closeEditFormIcon = document.querySelector('.popup__icon-close-edit-form');
-let closeAddFormIcon = document.querySelector('.popup__icon-close-add-form');
-let closePhotoIcon = document.querySelector('.popup__icon-close-photo');
+const closeEditFormIcon = document.querySelector('.popup__icon-close-edit-form');
+const closeAddFormIcon = document.querySelector('.popup__icon-close-add-form');
+const closePhotoIcon = document.querySelector('.popup__icon-close-photo');
 //попапы
-let popupProfileEdit = document.querySelector('#popup__edit');
-let popupAddCard = document.querySelector('#popup__add');
-let popupPhoto = document.querySelector('#popup__photo');
+const popupProfileEdit = document.querySelector('#popup__edit');
+const popupAddCard = document.querySelector('#popup__add');
+const popupPhoto = document.querySelector('#popup__photo');
 //кнопки на странице
-let editIcon = document.querySelector('.profile__edit-button');
-let addIcon = document.querySelector('.profile__add-button');
-
+const editIcon = document.querySelector('.profile__edit-button');
+const addIcon = document.querySelector('.profile__add-button');
+//контейнер для карточек
 const cardsContainer = document.querySelector('.cards');
+//шаблон карточки
+const cardTemplate = document.querySelector('#card-template').content;
 
-function closePopup(popupElement){
+function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
-function openPopup(popupElement){
+
+function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
 }
-function editFormSubmitHandler (evt) {
-  evt.preventDefault();
 
+function editFormSubmitHandler(evt) {
+  evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   closePopup(popupProfileEdit);
 }
-function addFormSubmitHandler(evt){
+
+function addFormSubmitHandler(evt) {
   evt.preventDefault();
-  addCard(newCardName.value, newCardLink.value)
+  renderCard(createCard(newCardName.value, newCardLink.value), cardsContainer)
+  newCardName.value = "";
+  newCardLink.value = "";
   closePopup(popupAddCard)
 }
-function addCard(cardName, cardLink){
-  const cardTemplate = document.querySelector('#card-template').content;
+
+function handlePreviewPicture(fullPhoto) {
+  photo.src = fullPhoto.link;
+  photo.alt = fullPhoto.name;
+  photoDescription.textContent = fullPhoto.name;
+  openPopup(popupPhoto)
+}
+
+function createCard(cardName, cardLink) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
 
+  const cardLikeBtn = cardElement.querySelector('.card__icon-like');
+  const cardDeleteBtn = cardElement.querySelector('.card__icon-delete');
+  const cardImage = cardElement.querySelector('.card__image');
+
   cardElement.querySelector('.card__title').textContent = cardName;
-  cardElement.querySelector('.card__image').src = cardLink;
+  cardImage.src = cardLink;
+  cardImage.alt = cardName;
 
   //лайк карточки
-  cardElement.querySelector('.card__icon-like').addEventListener('click', function (evt){
-    evt.target.classList.toggle('card__icon-like_disabled');
+  cardLikeBtn.addEventListener('click', function (evt) {
     evt.target.classList.toggle('card__icon-like_active');
   })
   //удаление карточки
-  cardElement.querySelector('.card__icon-delete').addEventListener('click', () => {
+  cardDeleteBtn.addEventListener('click', () => {
     cardElement.remove();
   })
   //открытие попапа с фото
-  cardElement.querySelector('.card__image').addEventListener('click', () => {
-    photo.src = cardLink
-    photoDescription.textContent = cardName;
-    openPopup(popupPhoto)
+  cardImage.addEventListener('click', () => {
+    handlePreviewPicture({name: cardName, link: cardLink})
   })
-  cardsContainer.prepend(cardElement)
+  return cardElement;
 }
 
-/*const cards = document.querySelectorAll('.card');
-cards.forEach(card => card.remove());*/
+function renderCard(data, wrap) {
+  wrap.prepend(data)
+}
 
 //формируем галерею карточек
-initialCards.forEach((card) => {
-    addCard(card.name, card.link)
-  }
-)
+initialCards.forEach((data) => {
+  renderCard(createCard(data.name, data.link), cardsContainer)
+})
+
 //обработчики закрытия
 closeEditFormIcon.addEventListener('click', () => closePopup(popupProfileEdit));
 closeAddFormIcon.addEventListener('click', () => closePopup(popupAddCard));
