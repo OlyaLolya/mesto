@@ -29,6 +29,8 @@ const cardsContainer = document.querySelector('.cards');
 //шаблон карточки
 const cardTemplate = document.querySelector('#card-template').content;
 
+const oneCard = cardTemplate.querySelector('.card');
+
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
@@ -60,7 +62,7 @@ function handlePreviewPicture(fullPhoto) {
 }
 
 function createCard(cardName, cardLink) {
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  const cardElement = oneCard.cloneNode(true);
 
   const cardLikeBtn = cardElement.querySelector('.card__icon-like');
   const cardDeleteBtn = cardElement.querySelector('.card__icon-delete');
