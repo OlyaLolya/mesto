@@ -33,10 +33,28 @@ const oneCard = cardTemplate.querySelector('.card');
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEcs);
+  document.removeEventListener('click', closeByClickAtOverlay)
 }
 
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEcs)
+  document.addEventListener('click', closeByClickAtOverlay)
+
+}
+
+function closeByClickAtOverlay(evt){
+  const openedPopup = document.querySelector('.popup_opened');
+  const formElem = openedPopup.querySelector('.popup__container')
+  if(evt.target.contains(formElem))
+    closePopup(openedPopup)
+}
+function closeByEcs(evt){
+  const openedPopup = document.querySelector('.popup_opened')
+  if(evt.key === 'Escape'){
+    closePopup(openedPopup)
+  }
 }
 
 function editFormSubmitHandler(evt) {
