@@ -24,6 +24,7 @@ const popupPhoto = document.querySelector('#popup__photo');
 //кнопки на странице
 const editIcon = document.querySelector('.profile__edit-button');
 const addIcon = document.querySelector('.profile__add-button');
+const cardFormSubmitButton = addFormElement.querySelector('.form__button')
 //контейнер для карточек
 const cardsContainer = document.querySelector('.cards');
 //шаблон карточки
@@ -38,6 +39,14 @@ function closePopup(popupElement) {
 }
 
 function openPopup(popupElement) {
+  //решила проблему неактивной кнопки при повторном открытии попапа карточки по советам в ревью,
+  //однако более логичным решением мне кажется вызов функции toggleButtonState при открытии попапа, так как
+  //это решает общую проблему ее вызова на событие input:
+
+  /*if(popupElement.contains(popupElement.querySelector(validationSettings.submitButtonSelector))){
+  toggleButtonState(Array.from(popupElement.querySelectorAll(validationSettings.inputSelector)),
+    popupElement.querySelector(validationSettings.submitButtonSelector), validationSettings)}*/
+
   popupElement.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEcs)
   document.addEventListener('click', closeByClickAtOverlay)
@@ -69,7 +78,8 @@ function addFormSubmitHandler(evt) {
   renderCard(createCard(newCardName.value, newCardLink.value), cardsContainer)
   newCardName.value = "";
   newCardLink.value = "";
-  closePopup(popupAddCard)
+  closePopup(popupAddCard);
+  cardFormSubmitButton.classList.add(validationSettings.inactiveButtonClass);
 }
 
 function handlePreviewPicture(fullPhoto) {
