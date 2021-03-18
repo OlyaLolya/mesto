@@ -1,13 +1,49 @@
-/*
+import {Card} from "./Card.js";
+import {FormValidator} from "./FormValidator.js";
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+const validationSettings = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__button',
+  inactiveButtonClass: 'form__button_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+}
+
+//контейнер для карточек
+const cardsContainer = document.querySelector('.cards');
 //имя и описание для профиля из формы
 const nameInput = document.querySelector('.form__input_data_heading');
 const jobInput = document.querySelector('.form__input_data_description');
 //имя и ссылка для карточки из формы
 const newCardName = document.querySelector('.form__input_card_heading');
 const newCardLink = document.querySelector('.form__input_card_link');
-//элементы фото и описание к фото
-//const photo = document.querySelector('.popup__photo')
-//const photoDescription = document.querySelector('.popup__description')
 //инфа в профиле
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
@@ -17,58 +53,38 @@ const addFormElement = document.querySelector('.add-form');
 //иконки закрытия
 const closeEditFormIcon = document.querySelector('.popup__icon-close-edit-form');
 const closeAddFormIcon = document.querySelector('.popup__icon-close-add-form');
-//const closePhotoIcon = document.querySelector('.popup__icon-close-photo');
 //попапы
 const popupProfileEdit = document.querySelector('#popup__edit');
 const popupAddCard = document.querySelector('#popup__add');
-//const popupPhoto = document.querySelector('#popup__photo');
 //кнопки на странице
 const editIcon = document.querySelector('.profile__edit-button');
 const addIcon = document.querySelector('.profile__add-button');
 const cardFormSubmitButton = addFormElement.querySelector('.form__button')
-//контейнер для карточек
-const cardsContainer = document.querySelector('.cards');*/
-//шаблон карточки
-//const cardTemplate = document.querySelector('#card-template').content;
 
-//const oneCard = cardTemplate.querySelector('.card');
-
-/*function closePopup(popupElement) {
+function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEcs);
   document.removeEventListener('click', closeByClickAtOverlay)
-}*/
+}
 
-/*function openPopup(popupElement) {
-  //решила проблему неактивной кнопки при повторном открытии попапа карточки по советам в ревью,
-  //однако более логичным решением мне кажется вызов функции toggleButtonState при открытии попапа, так как
-  //это решает общую проблему ее вызова на событие input:
-
-  /!*if(popupElement.contains(popupElement.querySelector(validationSettings.submitButtonSelector))){
-  toggleButtonState(Array.from(popupElement.querySelectorAll(validationSettings.inputSelector)),
-    popupElement.querySelector(validationSettings.submitButtonSelector), validationSettings)}*!/
-
+function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEcs)
   document.addEventListener('click', closeByClickAtOverlay)
-
-}*/
-
-/*function closeByClickAtOverlay(evt){
+}
+function closeByClickAtOverlay(evt){
   const openedPopup = document.querySelector('.popup_opened');
   const formElem = openedPopup.querySelector('.popup__container')
   if(evt.target.contains(formElem))
     closePopup(openedPopup)
-}*/
-/*function closeByEcs(evt){
+}
+function closeByEcs(evt){
   const openedPopup = document.querySelector('.popup_opened')
   if(evt.key === 'Escape'){
     closePopup(openedPopup)
   }
-}*/
-
-
-/*function editFormSubmitHandler(evt) {
+}
+function editFormSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
@@ -77,56 +93,22 @@ const cardsContainer = document.querySelector('.cards');*/
 
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
-  renderCard(createCard(newCardName.value, newCardLink.value), cardsContainer)
+  const item = {name: newCardName.value, link: newCardLink.value}
+  const card = new Card(item, '#card-template');
+  const veryNewCard = card.createCard();
+  cardsContainer.prepend(veryNewCard);
   newCardName.value = "";
   newCardLink.value = "";
   closePopup(popupAddCard);
   cardFormSubmitButton.classList.add(validationSettings.inactiveButtonClass);
-}*/
+}
 
-/*function handlePreviewPicture(fullPhoto) {
-  photo.src = fullPhoto.link;
-  photo.alt = fullPhoto.name;
-  photoDescription.textContent = fullPhoto.name;
-  openPopup(popupPhoto)
-}*/
+initialCards.forEach(item => {
+  const card = new Card(item, '#card-template');
+  const veryNewCard = card.createCard();
+  cardsContainer.prepend(veryNewCard);
+})
 
-/*function createCard(cardName, cardLink) {
-  const cardElement = oneCard.cloneNode(true);
-
-  const cardLikeBtn = cardElement.querySelector('.card__icon-like');
-  const cardDeleteBtn = cardElement.querySelector('.card__icon-delete');
-  const cardImage = cardElement.querySelector('.card__image');
-
-  cardElement.querySelector('.card__title').textContent = cardName;
-  cardImage.src = cardLink;
-  cardImage.alt = cardName;
-
-  //лайк карточки
-  cardLikeBtn.addEventListener('click', function (evt) {
-    evt.target.classList.toggle('card__icon-like_active');
-  })
-  //удаление карточки
-  cardDeleteBtn.addEventListener('click', () => {
-    cardElement.remove();
-  })
-  //открытие попапа с фото
-  cardImage.addEventListener('click', () => {
-    handlePreviewPicture({name: cardName, link: cardLink})
-  })
-  return cardElement;
-}*/
-
-/*function renderCard(data, wrap) {
-  wrap.prepend(data)
-}*/
-
-/*//формируем галерею карточек
-initialCards.forEach((data) => {
-  renderCard(createCard(data.name, data.link), cardsContainer)
-})*/
-
-/*
 //обработчики закрытия
 closeEditFormIcon.addEventListener('click', () => closePopup(popupProfileEdit));
 closeAddFormIcon.addEventListener('click', () => closePopup(popupAddCard));
@@ -143,5 +125,11 @@ addIcon.addEventListener('click', () => openPopup(popupAddCard));
 //обработчики сабмитов
 editFormElement.addEventListener('submit', editFormSubmitHandler);
 addFormElement.addEventListener('submit', addFormSubmitHandler);
-*/
+
+
+const formList = Array.from(document.querySelectorAll('.form'))
+formList.forEach(formElement => {
+  const form = new FormValidator(validationSettings, formElement)
+  form.enableValidation();
+})
 
