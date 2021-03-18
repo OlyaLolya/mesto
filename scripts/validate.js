@@ -1,4 +1,4 @@
-/*
+
 const validationSettings = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -62,4 +62,4 @@ function hasInvalidInput(inputList){
 }
 
 enableValidation(validationSettings);
-*/
+
