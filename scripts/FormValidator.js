@@ -8,11 +8,12 @@ export class FormValidator{
     this._errorClass = validationSelectors.errorClass;
   }
   enableValidation(){
-    this._setEventListeners();
-  }
-  _setEventListeners(){
     const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector))
     const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._toggleButtonState(inputList, buttonElement);
+    this._setEventListeners(inputList, buttonElement);
+  }
+  _setEventListeners(inputList, buttonElement){
     inputList.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement)
@@ -21,7 +22,6 @@ export class FormValidator{
     })
   }
   _checkInputValidity(inputElement){
-    console.log(inputElement)
     if(!inputElement.validity.valid){
       this._showInputError(inputElement, inputElement.validationMessage);
     } else {

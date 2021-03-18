@@ -60,6 +60,8 @@ const popupAddCard = document.querySelector('#popup__add');
 const editIcon = document.querySelector('.profile__edit-button');
 const addIcon = document.querySelector('.profile__add-button');
 const cardFormSubmitButton = addFormElement.querySelector('.form__button')
+//массив форм
+const formList = Array.from(document.querySelectorAll('.form'))
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
@@ -112,7 +114,6 @@ initialCards.forEach(item => {
 //обработчики закрытия
 closeEditFormIcon.addEventListener('click', () => closePopup(popupProfileEdit));
 closeAddFormIcon.addEventListener('click', () => closePopup(popupAddCard));
-//closePhotoIcon.addEventListener('click', () => closePopup(popupPhoto));
 
 //обработка кнопок на странице
 editIcon.addEventListener('click', () => {
@@ -127,7 +128,6 @@ editFormElement.addEventListener('submit', editFormSubmitHandler);
 addFormElement.addEventListener('submit', addFormSubmitHandler);
 
 
-const formList = Array.from(document.querySelectorAll('.form'))
 formList.forEach(formElement => {
   const form = new FormValidator(validationSettings, formElement)
   form.enableValidation();
