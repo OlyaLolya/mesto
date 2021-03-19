@@ -1,8 +1,11 @@
+import {photo, photoDescription, popupPhoto} from "./constData.js";
+
 export class Card {
-  constructor(cardData, cardSelector) {
+  constructor(cardData, cardSelector, openPopup) {
     this._cardSelector = cardSelector;
     this._name = cardData.name;
     this._link = cardData.link;
+    this._openPopup = openPopup;
   }
   _getTemplate() {
     const cardElement = document
@@ -33,48 +36,21 @@ export class Card {
     const cardDeleteBtn = this._element.querySelector('.card__icon-delete');
     cardDeleteBtn.addEventListener('click', () => {
       this._element.remove();
+      this._element = undefined;
     })
   }
   _handleOpenPopup(){
     const cardImage = this._element.querySelector('.card__image');
-    const photo = document.querySelector('.popup__photo')
-    const photoDescription = document.querySelector('.popup__description')
-    const popupPhoto = document.querySelector('#popup__photo');
     cardImage.addEventListener('click', () => {
       photo.src = this._link;
       photo.alt = this._name;
       photoDescription.textContent =this._name;
-      popupPhoto.classList.add('popup_opened');
-      document.addEventListener('click', this._handleCloseByClickAtOverlay)
-      document.addEventListener('keydown', this._handleCloseByEsc)
+      this._openPopup(popupPhoto);
     })
-  }
-  _handleClosePopup(){
-    const popupPhoto = document.querySelector('#popup__photo');
-    const closePhotoIcon = document.querySelector('.popup__icon-close-photo');
-    closePhotoIcon.addEventListener('click', () => {
-      popupPhoto.classList.remove('popup_opened');
-      document.removeEventListener('click', this._handleCloseByClickAtOverlay)
-      document.removeEventListener('keydown', this._handleCloseByEsc)
-    });
-
-  }
-  _handleCloseByEsc(evt){
-    const popupPhoto = document.querySelector('#popup__photo');
-    if(evt.key === 'Escape'){
-      popupPhoto.classList.remove('popup_opened');
-    }
-  }
-  _handleCloseByClickAtOverlay(evt){
-    const popupPhoto = document.querySelector('#popup__photo');
-    const formElem = popupPhoto.querySelector('.popup__container')
-    if(evt.target.contains(formElem))
-      popupPhoto.classList.remove('popup_opened');
   }
   _setEventListeners() {
     this._handleCardLike();
     this._handleDeleteCard();
     this._handleOpenPopup();
-    this._handleClosePopup();
   }
 }
