@@ -7,11 +7,10 @@ function closePopup(popupElement) {
   document.removeEventListener('keydown', closeByEcs);
   document.removeEventListener('click', closeByClickAtOverlay)
 }
-
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEcs)
-  document.addEventListener('mousedown', closeByClickAtOverlay)
+  document.addEventListener('click', closeByClickAtOverlay)
 }
 function closeByClickAtOverlay(evt){
   const openedPopup = document.querySelector('.popup_opened');
@@ -72,4 +71,3 @@ export const validateEditForm = new FormValidator(constData.validationSettings, 
 export const validateAddForm = new FormValidator(constData.validationSettings, constData.addFormElement);
 validateEditForm.enableValidation();
 validateAddForm.enableValidation();
-
