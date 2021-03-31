@@ -1,5 +1,3 @@
-import {photo, photoDescription, popupPhoto} from "./constData.js";
-
 export class Card {
   constructor(cardData, cardSelector, openPopup) {
     this._cardSelector = cardSelector;
@@ -8,13 +6,11 @@ export class Card {
     this._openPopup = openPopup;
   }
   _getTemplate() {
-    const cardElement = document
+    return document
       .querySelector(this._cardSelector)
       .content
       .querySelector('.card')
       .cloneNode(true);
-
-    return cardElement;
   }
   createCard() {
     this._element = this._getTemplate();
@@ -42,10 +38,7 @@ export class Card {
   _handleOpenPopup(){
     const cardImage = this._element.querySelector('.card__image');
     cardImage.addEventListener('click', () => {
-      photo.src = this._link;
-      photo.alt = this._name;
-      photoDescription.textContent =this._name;
-      this._openPopup(popupPhoto);
+      this._openPopup();
     })
   }
   _setEventListeners() {
