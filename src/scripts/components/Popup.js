@@ -1,23 +1,22 @@
-import * as constData from '../utils/constData.js'
-
 export class Popup{
   constructor(popupSelector) {
     this._element = popupSelector;
+    this._handleEscClose = this._handleEscClose.bind(this)
     this._formElem = this._element.querySelector('.popup__container')
     this._closeButton = this._element.querySelector('.popup__icon-close')
     this.setEventListeners();
   }
   open(){
     this._element.classList.add('popup_opened');
+    document.addEventListener('keydown', this._handleEscClose)
   }
   close(){
     this._element.classList.remove('popup_opened');
+    document.removeEventListener('keydown', this._handleEscClose)
   }
-  _handleEscClose(){
-    document.addEventListener('keydown', (evt) => {
-      if(evt.key === constData.escKey)
-        this.close()
-    });
+  _handleEscClose(evt){
+    if(evt.key === 'Escape')
+      this.close()
   }
   _handleOverlayClose(){
     this._element.addEventListener('click', (evt) => {
@@ -28,6 +27,5 @@ export class Popup{
   setEventListeners(){
     this._closeButton.addEventListener('click', () => this.close())
     this._handleOverlayClose();
-    this._handleEscClose();
   }
 }
