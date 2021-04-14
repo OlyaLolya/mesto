@@ -16,7 +16,7 @@
   <main>
     <section class="profile">
       <div class="profile__avatar-container">
-        <img class="profile__photo" alt="фото в профиле" src="">
+        <img class="profile__photo" alt="фото в профиле" src=" ">
         <div class="profile__avatar-overlay"></div>
       </div>
       <div class="profile__intro">
@@ -61,6 +61,7 @@
       <button type="button" class="popup__icon-close popup__icon-close-edit-form"></button>
       <form class="form avatar-form" name="profile-edit-form" novalidate>
         <h2 class="form__header">Обновить аватар</h2>
+        <fieldset class="form__profile-info">
           <input class="form__input form__input_avatar_url" type="url" placeholder="Ссылка на аватар"
                  name="avatar" id="avatar-url-input" required>
           <span class="form__error avatar-url-input-error"></span>
