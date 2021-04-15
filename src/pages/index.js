@@ -28,10 +28,11 @@ const cardList = new Section({
   }
 }, constData.cardsContainer);
 //функции
-const addFormSubmitHandler = function (data){
+const addFormSubmitHandler = function (data) {
   api.addNewCard(data)
     .then(result => {
       cardList.addItem(createCard(result));
+      addPopup.close();
     })
     .catch(err => {
       console.log(err)
@@ -41,31 +42,34 @@ const editFormSubmitHandler = function (data) {
   api.editProfile(data)
     .then((result) => {
       user.setUserInfo(result);
+      editPopup.close()
     })
     .catch(err => {
       console.log(err)
     })
 }
-const avatarEditFormSubmitHandler = function (data){
+const avatarEditFormSubmitHandler = function (data) {
   api.changeAvatar(data)
     .then(result => {
       user.setUserInfo(result);
       constData.profilePhoto.src = result.avatar;
+      avatarEditPopup.close()
     })
     .catch(err => {
       console.log(err)
     })
 }
-const deleteCardFormSubmitHandler = function (card, cardId){
+const deleteCardFormSubmitHandler = function (card, cardId) {
   api.deleteCard(cardId)
     .then(() => {
       card.remove();
+      deletePopup.close()
     })
     .catch(err => {
       console.log(err)
     })
 }
-const putLikeHandler = function (countOfLikes, cardId){
+const putLikeHandler = function (countOfLikes, cardId) {
   api.putLike(cardId)
     .then(result => {
       countOfLikes.innerHTML = result.likes.length;
@@ -83,8 +87,9 @@ const deleteLikeHandler = function (countOfLikes, cardId) {
       console.log(err)
     })
 }
-function createCard(item){
-  const { _id } = user.getUserInfo()
+
+function createCard(item) {
+  const {_id} = user.getUserInfo()
   const card = new Card(item,
     '#card-template',
     () => popupWithImage.open(item),
@@ -95,22 +100,20 @@ function createCard(item){
   );
   return card.createCard();
 }
-api.getUserInfo()
-  .then((result) => {
-    user.setUserInfo(result);
-    constData.profileName.textContent = result.name;
-    constData.profileDescription.textContent = result.about;
-    constData.profilePhoto.src = result.avatar;
+
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards(),
+])
+  .then(([userData, initialCards]) => {
+    user.setUserInfo(userData);
+    constData.profileName.textContent = userData.name;
+    constData.profileDescription.textContent = userData.about;
+    constData.profilePhoto.src = userData.avatar;
+    cardList.renderItems(initialCards);
   })
-  .catch(err => {
-    console.log(err)
-  });
-api.getInitialCards()
-  .then((results) => {
-    cardList.renderItems(results);
-  })
-  .catch(err => {
-    console.log(err)
+  .catch((err) => {
+    console.log(err);
   });
 
 //экземпляры попапов
@@ -118,7 +121,7 @@ const popupWithImage = new PopupWithImage(constData.photo, constData.photoDescri
 const deletePopup = new PopupWithForm(constData.formInput, deleteCardFormSubmitHandler, constData.popupDelete)
 const editPopup = new PopupWithForm(constData.formInput, editFormSubmitHandler, constData.popupProfileEdit)
 const addPopup = new PopupWithForm(constData.formInput, addFormSubmitHandler, constData.popupAddCard)
-const avatarEditPopup = new PopupWithForm(constData.formInput, avatarEditFormSubmitHandler ,constData.popupAvatarEdit)
+const avatarEditPopup = new PopupWithForm(constData.formInput, avatarEditFormSubmitHandler, constData.popupAvatarEdit)
 
 //слушатель клика по кнопке редактирования профиля
 constData.editIcon.addEventListener('click', () => {
@@ -135,7 +138,7 @@ constData.addIcon.addEventListener('click', () => {
 //лушатель клика по кнопке смены аватара
 constData.editAvatar.addEventListener('click', () => {
   avatarEditPopup.open();
-  const { avatar } = user.getUserInfo();
+  const {avatar} = user.getUserInfo();
   constData.avatarUrl.value = avatar;
 })
 

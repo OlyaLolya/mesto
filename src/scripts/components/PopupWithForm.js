@@ -30,13 +30,11 @@ export class PopupWithForm extends Popup{
       evt.preventDefault();
       if(this._cardId){
         this._formSubmitHandler(this._card, this._cardId)
-        this.close();
         this._submitButton.value = 'Сохранение...';
         return  0;
       }
       this._formSubmitHandler(this._getInputValues())
       this._submitButton.value = 'Сохранение...';
-      this.close();
     })
   }
 }
